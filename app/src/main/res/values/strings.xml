@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SeekhoAnime</string>
+    <string name="anime_title">Anime Title</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="rating_8_9">Rating: 8.9</string>
+    <string name="episodes_24">Episodes: 24</string>
+    <string name="anime_synopsis_goes_here">Anime synopsis</string>
+</resources>
