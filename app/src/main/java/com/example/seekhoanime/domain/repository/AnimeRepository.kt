@@ -16,8 +16,7 @@ class AnimeRepository @Inject constructor(
 ) {
     // Fetch anime from API as Flow
     fun fetchAnimeData(): Flow<AnimeTable> = flow {
-        val response = apiService.getTopAnime()
-        emit(response)
+        emit(apiService.getTopAnime())
     }
 
     // Get anime from local DB as Flow
@@ -29,8 +28,7 @@ class AnimeRepository @Inject constructor(
     }
 
     fun getAnimeDetails(id: Int): Flow<AnimeDetailsModel> = flow {
-        val response = apiService.getAnimeDetail(id)
-        emit(response)
+        emit(apiService.getAnimeDetail(id))
     }
 
 }

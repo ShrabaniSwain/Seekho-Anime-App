@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.seekhoanime.R
 import com.example.seekhoanime.domain.model.TopRatedAnimeInfo
 import com.example.seekhoanime.databinding.ItemAnimeListBinding
 
@@ -17,11 +18,11 @@ class AnimeAdapter(
     inner class AnimeViewHolder(private val binding: ItemAnimeListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "StringFormatMatches")
         fun bind(anime: TopRatedAnimeInfo) = with(binding) {
             tvTitle.text = anime.title
-            tvEpisodes.text = "Episodes: ${anime.episodes}"
-            tvRating.text = "Rating: ${anime.score}"
+            tvEpisodes.text = String.format(itemView.context.getString(R.string.episodes), anime.episodes)
+            tvRating.text = String.format(itemView.context.getString(R.string.rating), anime.score)
 
             Glide.with(root.context)
                 .load(anime.images.jpg.imageUrl)
@@ -50,7 +51,10 @@ class AnimeDiffCallback : DiffUtil.ItemCallback<TopRatedAnimeInfo>() {
         return oldItem.malId == newItem.malId
     }
 
-    override fun areContentsTheSame(oldItem: TopRatedAnimeInfo, newItem: TopRatedAnimeInfo): Boolean {
+    override fun areContentsTheSame(
+        oldItem: TopRatedAnimeInfo,
+        newItem: TopRatedAnimeInfo
+    ): Boolean {
         return oldItem == newItem
     }
 }

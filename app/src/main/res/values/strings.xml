@@ -6,4 +6,7 @@
     <string name="rating_8_9">Rating: 8.9</string>
     <string name="episodes_24">Episodes: 24</string>
     <string name="anime_synopsis_goes_here">Anime synopsis</string>
+    <string name="episodes">Episodes: %1$s</string>
+    <string name="rating">Rating: %1$s</string>
+    <string name="retry">Retry</string>
 </resources>

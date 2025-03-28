@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,12 +25,10 @@ class AnimeDetailsViewModel @Inject constructor(
     fun getAnimeDetail(animeId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             _uiState.value = AnimeUiEvents.Loading
-            try {
-                repository.getAnimeDetails(animeId).collect { animeTable ->
-                    _uiState.value = AnimeUiEvents.Success(animeTable)
-                }
-            } catch (e: Exception) {
+            repository.getAnimeDetails(animeId).catch { e ->
                 _uiState.value = AnimeUiEvents.Error(e.message ?: "Something went wrong")
+            }.collect { animeTable ->
+                _uiState.value = AnimeUiEvents.Success(animeTable)
             }
         }
     }

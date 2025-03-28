@@ -11,21 +11,4 @@ import com.example.seekhoanime.domain.model.TopRatedAnimeInfo
 @TypeConverters(AnimeImageConverters::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun animeDao(): AnimeDao
-
-    companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-
-        fun getDatabase(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "database"
-                ).build()
-                INSTANCE = instance
-                instance
-            }
-        }
-    }
 }
